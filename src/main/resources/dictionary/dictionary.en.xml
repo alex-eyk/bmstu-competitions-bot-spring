@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+The filename is "dictionary.en.xml", where "en" is language code.
+
+dictionary — root element
+Contains the following attributes:
+  default           — The 'default' language contains all non-translatable words, and will also be used if the user's
+                      language is not among the supported ones.
+                      Boolean value. Required attribute.
+
+  languageLocalName — Local language name in the corresponding language (example: `English` for code "en")
+                      String value. Required attribute.
+
+It must contain two elements - `replies` and `words`.
+-->
+<dictionary
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="dictionary-schema.xsd"
+        language_local_name="English"
+        default="false">
+
+    <!--
+    <replies>
+    The element contains replies, which can be somehow changed in the code before being sent to the user.
+    Replies are written in the following format:
+      <reply key="Key" format="false">Content of reply</reply>
+
+    Each reply can have the following attributes::
+      key      - The value by which the reply can be accessed later. Must be in lower case, words must be separated by
+                 underscores (example: `service_unavailable`).
+                 String value. Required attribute.
+
+      format   - Does the content require formatting, i.e. Does it need to be supplemented with some additional
+                 parameters. Parameters are set using the <args/> element inside the <reply>. It has attributes
+                 q - a condition for String.format, for example `%s`, `%d` or `%.1f`, and name - the name of the
+                 parameter.
+                 Boolean value. Optional attribute, default value is false.
+
+      markdown — Whether the string was written using the Markdown language for further formatting.
+                 https://core.telegram.org/api/entities (markdown - most recent examples)
+                 Boolean value. Optional attribute, default value is false.
+    -->
+    <replies>
+        <!--
+        All replies must be defined for each language used.
+        For new line use <br/>.
+        -->
+        <reply key="start">Welcome!</reply>
+        <reply key="start_first_time">Welcome!</reply>
+
+        <reply key="select_lang" format="true" markdown="true">
+            Select a language from the supported ones.<br/>These include:<br/>*<arg q="%s" name="supported_langs"/>*<br/>In response, write the code of the language you need
+        </reply>
+        <reply key="lang_selected">Language changed successfully</reply>
+        <reply key="lang_not_found">Language not found. Please, try again</reply>
+    </replies>
+
+    <!--
+    <words>
+    The element contains words or small phrases inside. Contrary to the replies, `words` must not be changed in the
+    code (except the case). Words can be used as part of a `reply`.
+    Example. We need to display the current weather condition in the following format:
+      <reply key="weather_state" format="true">Now is %s</reply>
+    The weather state can be, for example, either `snow` or `rain`. Then we can prepare the appropriate words in
+    advance:
+      <word key="snow">snow</word>
+      <word key="rain">rain</word>.
+    -->
+    <words>
+        <!--
+        All words must be defined for each language used, unless there is nothing to translate, such as the degree sign.
+        In such a case, it is necessary to indicate, using the translatable attribute, that the word is not
+        translatable.
+        Non-translatable words can only be in the default dictionary file.
+        For new line use <br/>
+        -->
+        <word key="word">Word</word>
+    </words>
+</dictionary>

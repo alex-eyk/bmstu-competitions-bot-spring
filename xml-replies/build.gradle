@@ -1,0 +1,18 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm'
+}
+
+group 'com.alex.eyk.replies'
+version '1.0'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation 'com.ximand:properties-provider:1.0.2'
+    implementation 'com.squareup:kotlinpoet:1.10.2'
+
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib'
+}
