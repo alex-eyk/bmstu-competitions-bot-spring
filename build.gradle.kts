@@ -25,6 +25,8 @@ dependencies {
 
     implementation("com.ximand:properties-provider:1.0.2")
 
+    implementation("org.apache.pdfbox:pdfbox:2.0.25")
+
     implementation("org.telegram:telegrambots-spring-boot-starter:5.7.1")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
