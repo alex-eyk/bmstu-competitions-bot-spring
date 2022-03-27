@@ -1,6 +1,6 @@
-package com.alex.eyk.telegram.app.service
+package com.alex.eyk.telegram.app.service.pdf
 
-import com.alex.eyk.telegram.app.service.exception.EncryptedDocumentException
+import com.alex.eyk.telegram.app.service.pdf.exception.EncryptedDocumentException
 import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.text.PDFTextStripper
 import org.springframework.stereotype.Service

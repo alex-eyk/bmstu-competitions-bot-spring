@@ -1,4 +1,4 @@
-package com.alex.eyk.telegram.app.service
+package com.alex.eyk.telegram.app.service.pdf
 
 import java.io.InputStream
 import java.util.Date
