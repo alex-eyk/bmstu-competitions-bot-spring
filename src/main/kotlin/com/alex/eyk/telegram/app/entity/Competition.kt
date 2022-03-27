@@ -4,6 +4,6 @@ import java.util.Date
 
 data class Competition(
     val places: Int,
-    val updated: Date,
+    val created: Date,
     val participants: List<Participant>
 )
