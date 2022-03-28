@@ -40,6 +40,12 @@ class CompetitionsLoaderImpl @Inject constructor(
         )
     }
 
+    override fun loadCreated(direction: Direction): Date {
+        return pdfService.loadCreated(
+            openStream(direction)
+        )
+    }
+
     private fun openStream(direction: Direction): InputStream {
         val url = webProperties.bmstuUrl
             .plus(direction.educationBasis.code)
