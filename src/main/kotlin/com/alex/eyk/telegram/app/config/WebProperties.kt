@@ -8,4 +8,7 @@ class WebProperties {
 
     @Property(name = "web.bmstu_url")
     var bmstuUrl: String = ""
+
+    @Property(name = "web.update_delay")
+    var updateDelay: Long = 0
 }
