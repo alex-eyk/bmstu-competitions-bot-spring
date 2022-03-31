@@ -6,5 +6,6 @@ import java.util.Date
 data class Competition(
     val places: Int,
     val created: Date,
-    val participants: SkipList<Participant>
+    val participants: SkipList<Participant>,
+    val positions: Map<String, Int>
 )

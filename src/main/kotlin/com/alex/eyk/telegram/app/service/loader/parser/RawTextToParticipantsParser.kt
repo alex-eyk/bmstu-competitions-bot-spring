@@ -1,7 +1,6 @@
 package com.alex.eyk.telegram.app.service.loader.parser
 
 import com.alex.eyk.telegram.app.collection.MutableSkipList
-import com.alex.eyk.telegram.app.collection.SkipList
 import com.alex.eyk.telegram.app.collection.SkipListImpl
 import com.alex.eyk.telegram.app.entity.Participant
 import com.alex.eyk.telegram.app.util.TextUtils
@@ -32,14 +31,16 @@ class RawTextToParticipantsParser {
         )
     }
 
-    fun parse(text: String): SkipList<Participant> {
+    fun parse(text: String): ParticipantsData {
         val participants: MutableSkipList<Participant> =
             SkipListImpl(2, EMPTY_PARTICIPANT)
+        val positions: MutableMap<String, Int> = HashMap()
         for (line in text.lines()) {
             try {
                 val participant = parseParticipant(line)
                 if (participant.consentToEnrollment || participant.forecast.isNotEmpty()) {
                     participants.add(participant, 2)
+                    positions[participant.registrationNumber] = participant.position
                 } else {
                     participants.add(participant)
                 }
@@ -47,7 +48,7 @@ class RawTextToParticipantsParser {
                 continue
             }
         }
-        return participants
+        return ParticipantsData(participants, positions)
     }
 
     private fun parseParticipant(line: String): Participant {

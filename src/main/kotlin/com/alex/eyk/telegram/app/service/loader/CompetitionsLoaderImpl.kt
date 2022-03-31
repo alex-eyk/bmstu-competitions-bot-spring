@@ -33,10 +33,12 @@ class CompetitionsLoaderImpl @Inject constructor(
     override fun load(direction: Direction, created: Date): Competition {
         val stream = openStream(direction)
         val rawText = pdfService.loadText(stream)
+        val participantsData = participantsParser.parse(rawText)
         return Competition(
             places = getPlaces(rawText),
             created = created,
-            participants = participantsParser.parse(rawText)
+            participants = participantsData.participant,
+            positions = participantsData.positions
         )
     }
 
