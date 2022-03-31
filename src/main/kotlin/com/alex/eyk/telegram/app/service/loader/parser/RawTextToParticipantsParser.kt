@@ -1,5 +1,8 @@
 package com.alex.eyk.telegram.app.service.loader.parser
 
+import com.alex.eyk.telegram.app.collection.MutableSkipList
+import com.alex.eyk.telegram.app.collection.SkipList
+import com.alex.eyk.telegram.app.collection.SkipListImpl
 import com.alex.eyk.telegram.app.entity.Participant
 import com.alex.eyk.telegram.app.util.TextUtils
 import org.springframework.stereotype.Service
@@ -23,13 +26,23 @@ class RawTextToParticipantsParser {
         private const val SPECIAL_RIGHTS_INDEX = 8
         private const val CONSENT_TO_ENROLLMENT_INDEX = 9
         private const val FORECAST_INDEX = 10
+
+        private val EMPTY_PARTICIPANT = Participant(
+            -1, "", false, 0, 0, 0, 0, 0, 0, specialRights = false, consentToEnrollment = false, forecast = ""
+        )
     }
 
-    fun parse(text: String): List<Participant> {
-        val participants: MutableList<Participant> = ArrayList()
+    fun parse(text: String): SkipList<Participant> {
+        val participants: MutableSkipList<Participant> =
+            SkipListImpl(2, EMPTY_PARTICIPANT)
         for (line in text.lines()) {
             try {
-                participants.add(parseParticipant(line))
+                val participant = parseParticipant(line)
+                if (participant.consentToEnrollment || participant.forecast.isNotEmpty()) {
+                    participants.add(participant, 2)
+                } else {
+                    participants.add(participant)
+                }
             } catch (e: Exception) {
                 continue
             }
