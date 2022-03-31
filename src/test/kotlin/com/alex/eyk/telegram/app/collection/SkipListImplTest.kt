@@ -11,15 +11,18 @@ internal class SkipListImplTest {
         list.add(1)
         list.add(2, 2)
 
-        val expectedValues = listOf(0, 2)
+        val expectedValues = listOf(0)
         val actualValues = mutableListOf<Int>()
         val target = 2
 
         list.searcher()
             .downOn { it > target }
-            .searchTo { it == target }
+            .isTarget { it == target }
             .forEach {
                 actualValues.add(it)
+            }
+            .forTarget {
+                Assertions.assertEquals(2, it)
             }
             .search()
         Assertions.assertEquals(expectedValues, actualValues)
@@ -32,7 +35,7 @@ internal class SkipListImplTest {
 
         val target = 3
         val searcher = list.searcher()
-            .searchTo { it == target }
+            .isTarget { it == target }
 
         Assertions.assertThrows(NoSuchElementException::class.java) {
             searcher.search()

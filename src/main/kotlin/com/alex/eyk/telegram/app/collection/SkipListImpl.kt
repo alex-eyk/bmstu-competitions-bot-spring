@@ -61,21 +61,24 @@ class SkipListImpl<T>(
 
     private inner class SkipListIteratorImpl : SkipListSearcher<T> {
 
-        private var to: (item: T) -> Boolean = { _ -> false }
+        private var isTarget: (item: T) -> Boolean = { _ -> false }
         private var downOn: (item: T) -> Boolean = { _ -> false }
         private var forEach: (item: T) -> Unit = {}
+        private var forTarget: (item: T) -> Unit = {}
 
-        override fun searchTo(condition: (item: T) -> Boolean) = apply { this.to = condition }
+        override fun isTarget(condition: (item: T) -> Boolean) = apply { this.isTarget = condition }
 
         override fun downOn(condition: (item: T) -> Boolean) = apply { this.downOn = condition }
 
         override fun forEach(action: (item: T) -> Unit) = apply { this.forEach = action }
 
+        override fun forTarget(action: (item: T) -> Unit) = apply { this.forTarget = action }
+
         override fun search() {
             var node = start[0]
             while (true) {
-                if (to.invoke(node.value)) {
-                    forEach.invoke(node.value)
+                if (isTarget.invoke(node.value)) {
+                    forTarget.invoke(node.value)
                     break
                 } else if (
                     node.next != null && downOn.invoke(node.next!!.value) == false
