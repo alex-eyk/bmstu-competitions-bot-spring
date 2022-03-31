@@ -5,7 +5,7 @@ package com.alex.eyk.telegram.app.collection
 class SkipListImpl<T>(
     private val lines: Int,
     firstValue: T
-) : SkipList<T> {
+) : MutableSkipList<T> {
 
     private var start: Array<Node<T>>
     private var last: Array<Node<T>>
