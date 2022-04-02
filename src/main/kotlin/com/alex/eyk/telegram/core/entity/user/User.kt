@@ -17,6 +17,9 @@ data class User(
     @Column(name = "`lang`", nullable = false)
     var languageCode: String,
 
+    @Column(name = "`reg_number`", nullable = false)
+    var registrationNumber: String = "00000000000",
+
     @Column(name = "`enabled`", nullable = false)
     var enabled: Boolean = true,
 

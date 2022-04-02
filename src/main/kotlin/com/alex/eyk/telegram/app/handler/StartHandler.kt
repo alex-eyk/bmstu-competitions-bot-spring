@@ -5,6 +5,7 @@ import com.alex.eyk.telegram.core.entity.user.UserRepository
 import com.alex.eyk.bot.weather.core.handler.command.CommandHandler
 import com.alex.eyk.dictionary.keys.Replies
 import com.alex.eyk.replies.dictionary.provider.DictionaryProvider
+import com.alex.eyk.telegram.core.entity.Activity
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage
@@ -29,7 +30,11 @@ class StartHandler @Autowired constructor(
     }
 
     override fun notRegisteredHandle(message: Message): SendMessage {
-        val user = User(message.chatId.toLong(), dictProvider.getDefaultLanguageCode())
+        val user = User(
+            chat = message.chatId,
+            languageCode = dictProvider.getDefaultLanguageCode(),
+            activity = Activity.REGISTRATION
+        )
         userRepository.save(user)
 
         val firstGreetingReply = dictProvider.reply()
@@ -52,4 +57,3 @@ class StartHandler @Autowired constructor(
         return dictProvider.getSupportedLanguages().containsKey(code)
     }
 }
-
