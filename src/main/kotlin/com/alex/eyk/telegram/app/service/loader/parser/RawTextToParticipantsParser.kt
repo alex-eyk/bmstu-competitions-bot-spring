@@ -2,7 +2,7 @@ package com.alex.eyk.telegram.app.service.loader.parser
 
 import com.alex.eyk.telegram.app.collection.MutableSkipList
 import com.alex.eyk.telegram.app.collection.SkipListImpl
-import com.alex.eyk.telegram.app.entity.Participant
+import com.alex.eyk.telegram.app.model.entity.Participant
 import com.alex.eyk.telegram.app.util.TextUtils
 import org.springframework.stereotype.Service
 

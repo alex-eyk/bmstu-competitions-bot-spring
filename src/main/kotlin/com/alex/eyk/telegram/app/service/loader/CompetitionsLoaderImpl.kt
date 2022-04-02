@@ -1,8 +1,8 @@
 package com.alex.eyk.telegram.app.service.loader
 
 import com.alex.eyk.telegram.app.config.WebProperties
-import com.alex.eyk.telegram.app.entity.Competition
-import com.alex.eyk.telegram.app.entity.Direction
+import com.alex.eyk.telegram.app.model.entity.Competition
+import com.alex.eyk.telegram.app.model.entity.Direction
 import com.alex.eyk.telegram.app.service.loader.parser.RawTextToParticipantsParser
 import com.alex.eyk.telegram.app.service.pdf.PdfService
 import com.alex.eyk.telegram.app.util.TextUtils

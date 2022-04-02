@@ -1,4 +1,4 @@
-package com.alex.eyk.telegram.app.entity
+package com.alex.eyk.telegram.app.model.entity
 
 import com.alex.eyk.telegram.app.collection.SkipList
 import java.util.Date

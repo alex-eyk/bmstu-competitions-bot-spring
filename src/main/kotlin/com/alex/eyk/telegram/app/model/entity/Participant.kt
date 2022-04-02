@@ -1,4 +1,4 @@
-package com.alex.eyk.telegram.app.entity
+package com.alex.eyk.telegram.app.model.entity
 
 data class Participant(
     val position: Int,
