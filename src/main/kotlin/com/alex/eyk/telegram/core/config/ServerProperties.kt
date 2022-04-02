@@ -3,7 +3,7 @@ package com.alex.eyk.telegram.core.config
 import com.ximand.properties.PropertiesPath
 import com.ximand.properties.Property
 
-@PropertiesPath("jarpath:/app.properties")
+@PropertiesPath("jarpath:/server.properties")
 class ServerProperties {
 
     @Property(name = "server.threads", defaultValue = "4")
