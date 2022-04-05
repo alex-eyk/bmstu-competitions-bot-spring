@@ -40,7 +40,7 @@ class RawTextToParticipantsParser {
                 val participant = parseParticipant(line)
                 if (participant.consentToEnrollment || participant.forecast.isNotEmpty()) {
                     participants.add(participant, 2)
-                    positions[participant.registrationNumber] = participant.position
+                    positions[participant.registrationNumber.replace(" ", "").replace("-", "")] = participant.position
                 } else {
                     participants.add(participant)
                 }

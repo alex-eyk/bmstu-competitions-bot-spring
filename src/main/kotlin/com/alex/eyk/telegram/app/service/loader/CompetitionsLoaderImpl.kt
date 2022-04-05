@@ -21,8 +21,8 @@ class CompetitionsLoaderImpl @Inject constructor(
 
     companion object {
 
-        private val COMPETITION_DECLARATION_PATTERN = "^\\d\\. .*\\( ?\\d+ .*\\)\$".toPattern()
-        private val PLACES_NUM_PATTERN = "\\d+(?= +мест.? *\\))".toPattern()
+        private val COMPETITION_DECLARATION_PATTERN = "\\d\\. .*\\( ?\\d+ .*\\)?".toPattern()
+        private val PLACES_NUM_PATTERN = "\\d+(?= +мест.? *\\)?)".toPattern()
     }
 
     override fun load(direction: Direction): Competition {
@@ -53,6 +53,7 @@ class CompetitionsLoaderImpl @Inject constructor(
             .plus(direction.educationBasis.code)
             .plus("/")
             .plus(direction.code)
+            .plus(".pdf")
         return URL(url).openStream()
     }
 
