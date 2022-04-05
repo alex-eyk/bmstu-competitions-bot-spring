@@ -5,5 +5,6 @@ data class CompetitionAnalytics(
     val total: Int,
     val consent: Boolean,
     val consents: Int,
+    val consentsRate: Float,
     val anotherConsents: Int
 )

@@ -41,6 +41,7 @@ class AnaliticsServiceImpl : AnaliticsService {
             total = competition.places,
             consent = consent,
             consents = consents,
+            consentsRate = (consents.toFloat() / competition.places) * 100f,
             anotherConsents = anotherConsents
         )
     }
