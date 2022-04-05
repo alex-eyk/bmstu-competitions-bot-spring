@@ -25,12 +25,17 @@ class CompetitionsLoaderImpl @Inject constructor(
         private val PLACES_NUM_PATTERN = "\\d+(?= +мест.? *\\)?)".toPattern()
     }
 
-    override fun load(direction: Direction): Competition {
+    override fun load(
+        direction: Direction
+    ): Competition {
         val stream = openStream(direction)
         return load(direction, pdfService.loadCreated(stream))
     }
 
-    override fun load(direction: Direction, created: Date): Competition {
+    override fun load(
+        direction: Direction,
+        created: Date
+    ): Competition {
         val stream = openStream(direction)
         val rawText = pdfService.loadText(stream)
         val participantsData = participantsParser.parse(rawText)

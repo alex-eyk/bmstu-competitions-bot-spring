@@ -24,7 +24,10 @@ class RegistrationHandler(
 
     private val numValidator = RegNumberValidatior()
 
-    override fun safeHandle(user: User, message: Message): SendMessage {
+    override fun safeHandle(
+        user: User,
+        message: Message
+    ): SendMessage {
         val responseTextKey: String
         when (numValidator.validate(message.text)) {
             is Result.Sucess -> {

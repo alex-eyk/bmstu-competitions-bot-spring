@@ -15,7 +15,9 @@ class LanguageTrigger(
     private val dictProvider: DictionaryProvider,
     userRepository: UserRepository
 ) : AbstractTrigger(
-    userRepository, ACTIVITY, COMMAND
+    userRepository,
+    cause = COMMAND,
+    result = ACTIVITY
 ) {
 
     companion object {

@@ -20,7 +20,10 @@ class LanguageHandler(
         private val ACTIVITY = Activity.SELECT_LANGUAGE
     }
 
-    override fun safeHandle(user: User, message: Message): SendMessage {
+    override fun safeHandle(
+        user: User,
+        message: Message
+    ): SendMessage {
         val code = message.text.lowercase()
         val replyKey = if (isSupportedLanguage(code)) {
             updateUser(user, code)
@@ -35,13 +38,19 @@ class LanguageHandler(
         return super.sendSimpleReply(user, reply)
     }
 
-    private fun updateUser(user: User, code: String) {
+    private fun updateUser(
+        user: User,
+        code: String
+    ) {
         user.languageCode = code
         user.activity = Activity.NONE
         userRepository.save(user)
     }
 
-    private fun isSupportedLanguage(code: String): Boolean {
-        return dictProvider.getSupportedLanguages().containsKey(code)
+    private fun isSupportedLanguage(
+        code: String
+    ): Boolean {
+        return dictProvider.getSupportedLanguages()
+            .containsKey(code)
     }
 }

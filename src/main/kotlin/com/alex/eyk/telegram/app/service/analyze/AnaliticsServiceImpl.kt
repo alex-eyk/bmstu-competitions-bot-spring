@@ -46,7 +46,10 @@ class AnaliticsServiceImpl : AnaliticsService {
         )
     }
 
-    private fun gaveContestToAnotherDirection(participant: Participant): Boolean {
-        return participant.consentToEnrollment == false && participant.forecast.isNotEmpty()
+    private fun gaveContestToAnotherDirection(
+        participant: Participant
+    ): Boolean {
+        return participant.consentToEnrollment == false
+                && participant.forecast.isNotEmpty()
     }
 }

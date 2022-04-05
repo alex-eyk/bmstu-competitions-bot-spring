@@ -21,7 +21,10 @@ class StartHandler @Autowired constructor(
         const val COMMAND = "start"
     }
 
-    override fun safeHandle(user: User, message: Message): SendMessage {
+    override fun safeHandle(
+        user: User,
+        message: Message
+    ): SendMessage {
         val greetingReply = dictProvider.reply()
             .language(user.languageCode)
             .key(Replies.START)
@@ -29,7 +32,9 @@ class StartHandler @Autowired constructor(
         return super.sendSimpleReply(user, greetingReply)
     }
 
-    override fun notRegisteredHandle(message: Message): SendMessage {
+    override fun notRegisteredHandle(
+        message: Message
+    ): SendMessage {
         val user = User(
             chat = message.chatId,
             languageCode = dictProvider.getDefaultLanguageCode(),
@@ -44,7 +49,9 @@ class StartHandler @Autowired constructor(
         return super.sendSimpleReply(user, firstGreetingReply)
     }
 
-    private fun getLanguageByMessage(message: Message): String {
+    private fun getLanguageByMessage(
+        message: Message
+    ): String {
         val code = message.from.languageCode
         return if (isSupportedLanguage(code)) {
             code
@@ -53,7 +60,10 @@ class StartHandler @Autowired constructor(
         }
     }
 
-    private fun isSupportedLanguage(code: String): Boolean {
-        return dictProvider.getSupportedLanguages().containsKey(code)
+    private fun isSupportedLanguage(
+        code: String
+    ): Boolean {
+        return dictProvider.getSupportedLanguages()
+            .containsKey(code)
     }
 }

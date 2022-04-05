@@ -38,9 +38,9 @@ class RawTextToParticipantsParser {
         for (line in text.lines()) {
             try {
                 val participant = parseParticipant(line)
-                if (participant.consentToEnrollment || participant.forecast.isNotEmpty()) {
+                if (containsSignificantData(participant)) {
                     participants.add(participant, 2)
-                    positions[participant.registrationNumber.replace(" ", "").replace("-", "")] = participant.position
+                    positions[participant.registrationNumber] = participant.position
                 } else {
                     participants.add(participant)
                 }
@@ -51,14 +51,20 @@ class RawTextToParticipantsParser {
         return ParticipantsData(participants, positions)
     }
 
+    private fun containsSignificantData(participant: Participant): Boolean {
+        return participant.consentToEnrollment
+                || participant.forecast.isNotEmpty()
+    }
+
     private fun parseParticipant(line: String): Participant {
-        val registrationNumber = TextUtils
+        val formatRegNum = TextUtils
             .findByAnyPattern(line, INSURANCE_PATTERN, REG_NUMBER_PATTERN)
+        val regNum = TextUtils.removeDividers(formatRegNum)
         val params = line.replace(
-            "$registrationNumber ", ""
+            "$formatRegNum ", ""
         ).split(" ")
         return Participant(
-            registrationNumber = registrationNumber,
+            registrationNumber = regNum,
             position = params[POSITION_INDEX].toInt(),
             needForHostel = params[NEED_FOR_HOSTEL_INDEX].toBooleanStrict(),
             pointsSum = params[POINTS_SUM_INDEX].toInt(),

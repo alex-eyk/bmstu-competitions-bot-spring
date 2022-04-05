@@ -12,7 +12,11 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage
 class EditRegTrigger(
     private val dictiProvider: DictionaryProvider,
     userRepository: UserRepository
-) : AbstractTrigger(userRepository, cause = COMMAND, result = ACTIVITY) {
+) : AbstractTrigger(
+    userRepository,
+    cause = COMMAND,
+    result = ACTIVITY
+) {
 
     companion object {
         private const val COMMAND = "edit"

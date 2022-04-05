@@ -9,8 +9,8 @@ import org.telegram.telegrambots.meta.api.objects.Message
 
 abstract class AbstractTrigger(
     private val userRepository: UserRepository,
-    private val result: Activity,
-    cause: String
+    cause: String,
+    private val result: Activity
 ) : CommandHandler(cause) {
 
     override fun safeHandle(user: User, message: Message): BotApiMethod<*> {
