@@ -1,7 +1,7 @@
 package com.alex.eyk.telegram.telegram.handler
 
-import com.alex.eyk.telegram.model.entity.user.User
 import com.alex.eyk.replies.dictionary.Reply
+import com.alex.eyk.telegram.model.entity.user.User
 import com.alex.eyk.telegram.telegram.method.SendMessageBuilder
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage

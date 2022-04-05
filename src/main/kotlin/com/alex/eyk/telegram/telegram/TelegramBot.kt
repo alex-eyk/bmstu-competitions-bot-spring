@@ -60,18 +60,21 @@ class TelegramBot @Autowired constructor(
         method: BotApiMethod<T>,
         onError: (BotApiMethod<*>, Throwable) -> Unit
     ) {
-        super.executeAsync(method, object : SentCallback<T> {
+        super.executeAsync(
+            method,
+            object : SentCallback<T> {
 
-            override fun onResult(method: BotApiMethod<T>, response: T) {
-            }
+                override fun onResult(method: BotApiMethod<T>, response: T) {
+                }
 
-            override fun onError(method: BotApiMethod<T>, apiException: TelegramApiRequestException) {
-                onError.invoke(method, apiException)
-            }
+                override fun onError(method: BotApiMethod<T>, apiException: TelegramApiRequestException) {
+                    onError.invoke(method, apiException)
+                }
 
-            override fun onException(method: BotApiMethod<T>, exception: java.lang.Exception) {
-                onError.invoke(method, exception)
+                override fun onException(method: BotApiMethod<T>, exception: java.lang.Exception) {
+                    onError.invoke(method, exception)
+                }
             }
-        })
+        )
     }
 }

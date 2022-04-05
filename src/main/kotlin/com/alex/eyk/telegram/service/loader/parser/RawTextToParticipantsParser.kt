@@ -52,8 +52,8 @@ class RawTextToParticipantsParser {
     }
 
     private fun containsSignificantData(participant: Participant): Boolean {
-        return participant.consentToEnrollment
-                || participant.forecast.isNotEmpty()
+        return participant.consentToEnrollment ||
+            participant.forecast.isNotEmpty()
     }
 
     private fun parseParticipant(line: String): Participant {

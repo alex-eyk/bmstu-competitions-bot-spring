@@ -7,20 +7,20 @@ import com.alex.eyk.replies.dictionary.provider.DictionaryProvider
 import com.alex.eyk.telegram.model.entity.competition.Competition
 import com.alex.eyk.telegram.model.entity.competition.Direction
 import com.alex.eyk.telegram.model.entity.competition.EducationBasis
+import com.alex.eyk.telegram.model.entity.user.Activity
+import com.alex.eyk.telegram.model.entity.user.User
+import com.alex.eyk.telegram.model.entity.user.UserRepository
 import com.alex.eyk.telegram.model.validation.Result
 import com.alex.eyk.telegram.model.validation.impl.DirectionCodeValidator
 import com.alex.eyk.telegram.service.analyze.AnaliticsService
 import com.alex.eyk.telegram.service.analyze.CompetitionAnalytics
 import com.alex.eyk.telegram.service.analyze.exception.ParticipantNotFoundException
 import com.alex.eyk.telegram.service.holder.CompetitionsHolder
-import com.alex.eyk.telegram.model.entity.user.Activity
-import com.alex.eyk.telegram.model.entity.user.User
-import com.alex.eyk.telegram.model.entity.user.UserRepository
 import com.alex.eyk.telegram.telegram.handler.message.activity.ActivityMessageHandler
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage
 import org.telegram.telegrambots.meta.api.objects.Message
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
 
 abstract class AbstractAnalyticsHandler(
     private val dictProvider: DictionaryProvider,

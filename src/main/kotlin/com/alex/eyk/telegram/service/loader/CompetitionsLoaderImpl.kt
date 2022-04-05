@@ -6,14 +6,14 @@ import com.alex.eyk.telegram.model.entity.competition.Direction
 import com.alex.eyk.telegram.service.loader.parser.RawTextToParticipantsParser
 import com.alex.eyk.telegram.service.pdf.PdfService
 import com.alex.eyk.telegram.util.TextUtils
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.io.InputStream
 import java.net.URL
-import java.util.*
-import javax.inject.Inject
+import java.util.Date
 
 @Service
-class CompetitionsLoaderImpl @Inject constructor(
+class CompetitionsLoaderImpl @Autowired constructor(
     private val participantsParser: RawTextToParticipantsParser,
     private val pdfService: PdfService,
     private val webProperties: WebProperties

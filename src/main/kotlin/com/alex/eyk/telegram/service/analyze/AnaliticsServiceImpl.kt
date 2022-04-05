@@ -1,8 +1,8 @@
 package com.alex.eyk.telegram.service.analyze
 
+import com.alex.eyk.telegram.ext.notContains
 import com.alex.eyk.telegram.model.entity.competition.Competition
 import com.alex.eyk.telegram.model.entity.competition.Participant
-import com.alex.eyk.telegram.ext.notContains
 import com.alex.eyk.telegram.service.analyze.exception.ParticipantNotFoundException
 import org.springframework.stereotype.Service
 
@@ -49,7 +49,7 @@ class AnaliticsServiceImpl : AnaliticsService {
     private fun gaveContestToAnotherDirection(
         participant: Participant
     ): Boolean {
-        return participant.consentToEnrollment == false
-                && participant.forecast.isNotEmpty()
+        return participant.consentToEnrollment == false &&
+            participant.forecast.isNotEmpty()
     }
 }

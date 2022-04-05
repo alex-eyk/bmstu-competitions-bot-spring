@@ -2,18 +2,19 @@ package com.alex.eyk.telegram.handler
 
 import com.alex.eyk.dictionary.keys.Replies
 import com.alex.eyk.replies.dictionary.provider.DictionaryProvider
-import com.alex.eyk.telegram.model.validation.Result
-import com.alex.eyk.telegram.model.validation.impl.RegNumberValidatior
 import com.alex.eyk.telegram.model.entity.user.Activity
 import com.alex.eyk.telegram.model.entity.user.User
 import com.alex.eyk.telegram.model.entity.user.UserRepository
+import com.alex.eyk.telegram.model.validation.Result
+import com.alex.eyk.telegram.model.validation.impl.RegNumberValidatior
 import com.alex.eyk.telegram.telegram.handler.message.activity.ActivityMessageHandler
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage
 import org.telegram.telegrambots.meta.api.objects.Message
 
 @Service
-class RegistrationHandler(
+class RegistrationHandler @Autowired constructor(
     private val dictProvider: DictionaryProvider,
     private val userRepository: UserRepository
 ) : ActivityMessageHandler(ACTIVITY) {
