@@ -1,5 +1,6 @@
 package com.alex.eyk.telegram.app.collection
 
+import com.alex.eyk.telegram.collection.SkipListImpl
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
