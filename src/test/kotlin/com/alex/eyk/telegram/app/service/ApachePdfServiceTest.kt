@@ -1,9 +1,9 @@
 package com.alex.eyk.telegram.app.service
 
-import com.alex.eyk.telegram.app.service.pdf.ApachePdfService
+import com.alex.eyk.telegram.service.pdf.ApachePdfService
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import java.util.*
+import java.util.Date
 
 internal class ApachePdfServiceTest {
 
@@ -28,5 +28,4 @@ internal class ApachePdfServiceTest {
             Assertions.fail<Unit>()
         }
     }
-
 }

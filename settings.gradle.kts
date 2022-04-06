@@ -1,2 +1,2 @@
-rootProject.name = "telegram-spring-template"
+rootProject.name = "telegram-bmstu-bot"
 include("xml-replies")

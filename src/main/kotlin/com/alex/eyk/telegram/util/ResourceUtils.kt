@@ -1,15 +1,15 @@
 package com.alex.eyk.telegram.util
 
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver
+import com.ximand.properties.JarUtils
 import java.io.File
 
 object ResourceUtils {
 
     fun scanResourceDirectory(directoryPath: String): Set<File> {
-        val resolver = PathMatchingResourcePatternResolver()
-        val directory: File = resolver.getResource(directoryPath).file
-        val innerFiles = directory.listFiles()
-            ?: throw IllegalStateException("Directory not contains files")
+        val dictionariesPath = JarUtils.getFileFromJarDirectoryPath(directoryPath, javaClass)
+        val file = File(dictionariesPath)
+        val innerFiles = file.listFiles()
+            ?: throw IllegalStateException("Directory: $directoryPath not contains files")
         return innerFiles.toHashSet()
     }
 }
