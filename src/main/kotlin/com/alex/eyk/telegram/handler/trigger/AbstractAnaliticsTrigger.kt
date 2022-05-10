@@ -5,6 +5,7 @@ import com.alex.eyk.replies.dictionary.provider.DictionaryProvider
 import com.alex.eyk.telegram.model.entity.user.Activity
 import com.alex.eyk.telegram.model.entity.user.User
 import com.alex.eyk.telegram.model.entity.user.UserRepository
+import com.alex.eyk.telegram.util.RecentDirectionUtils
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage
 
 abstract class AbstractAnaliticsTrigger(
@@ -19,6 +20,7 @@ abstract class AbstractAnaliticsTrigger(
             .language(user.languageCode)
             .key(Replies.INPUT_DIRECTION_CODE)
             .get()
-        return super.sendSimpleReply(user, reply)
+        val recent = RecentDirectionUtils.toStringSet(user.recentDirections)
+        return super.sendSimpleReply(user, reply, recent)
     }
 }

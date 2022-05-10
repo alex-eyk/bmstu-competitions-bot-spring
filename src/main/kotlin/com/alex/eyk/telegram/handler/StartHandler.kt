@@ -29,7 +29,7 @@ class StartHandler @Autowired constructor(
             .language(user.languageCode)
             .key(Replies.START)
             .get()
-        return super.sendSimpleReply(user, greetingReply)
+        return sendSimpleReply(user, greetingReply)
     }
 
     override fun notRegisteredHandle(
@@ -46,7 +46,7 @@ class StartHandler @Autowired constructor(
             .language(getLanguageByMessage(message))
             .key(Replies.START_FIRST_TIME)
             .get()
-        return super.sendSimpleReply(user, firstGreetingReply)
+        return sendSimpleReply(user, firstGreetingReply)
     }
 
     private fun getLanguageByMessage(
