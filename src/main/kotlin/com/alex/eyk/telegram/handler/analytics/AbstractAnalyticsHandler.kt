@@ -19,8 +19,10 @@ import com.alex.eyk.telegram.service.analyze.CompetitionAnalytics
 import com.alex.eyk.telegram.service.analyze.exception.ParticipantNotFoundException
 import com.alex.eyk.telegram.service.holder.CompetitionsHolder
 import com.alex.eyk.telegram.telegram.handler.message.activity.ActivityMessageHandler
+import com.alex.eyk.telegram.util.RecentDirectionUtils
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage
 import org.telegram.telegrambots.meta.api.objects.Message
+import java.io.FileNotFoundException
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
@@ -51,14 +53,18 @@ abstract class AbstractAnalyticsHandler(
                 .language(user.languageCode)
                 .key(Replies.WRONG_DIRECTION_CODE)
                 .get()
-            return super.sendSimpleReply(user, reply)
+            return sendSimpleReply(user, reply)
         }
         val direction = Direction(
             code = message.text,
             educationBasis = educationBasis
         )
-        val competition = competitionsHolder.by(direction)
+        val recentDirection = RecentDirection(0, user, RecentDirectionUtils.convertStringToBits(direction.code))
+        if (user.recentDirections.contains(recentDirection) == false) {
+            recentDirectionRepository.save(recentDirection)
+        }
         try {
+            val competition = competitionsHolder.by(direction)
             val analytics = analiticsService.analyze(user.registrationNumber, competition)
             val args = buildArgs(analytics, user, competition)
             val reply = dictProvider.reply()
@@ -68,7 +74,13 @@ abstract class AbstractAnalyticsHandler(
                 .get()
             user.activity = Activity.NONE
             userRepository.save(user)
-            return super.sendSimpleReply(user, reply)
+            return sendSimpleReply(user, reply)
+        } catch (e: FileNotFoundException) {
+            val reply = dictProvider.reply()
+                .language(user.languageCode)
+                //.key()
+                .get()
+            return sendSimpleReply(user, reply)
         } catch (e: ParticipantNotFoundException) {
             val reply = dictProvider.reply()
                 .language(user.languageCode)
