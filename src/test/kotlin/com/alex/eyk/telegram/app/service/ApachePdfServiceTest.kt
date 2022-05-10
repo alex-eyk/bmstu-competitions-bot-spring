@@ -13,6 +13,7 @@ internal class ApachePdfServiceTest {
     }
 
     private val service = ApachePdfService()
+    @Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
     private val stream = javaClass.classLoader.getResource(TEST_FILE_NAME).openStream()
 
     @Test
