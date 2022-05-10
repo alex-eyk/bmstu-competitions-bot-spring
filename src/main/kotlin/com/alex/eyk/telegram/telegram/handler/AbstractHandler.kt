@@ -6,6 +6,7 @@ import com.alex.eyk.telegram.telegram.method.SendMessageBuilder
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage
 import org.telegram.telegrambots.meta.api.objects.Message
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardRemove
 
 abstract class AbstractHandler {
 
@@ -28,10 +29,32 @@ abstract class AbstractHandler {
         throw NotImplementedError()
     }
 
-    protected fun sendSimpleReply(user: User, reply: Reply): SendMessage {
+    protected fun sendSimpleReply(
+        user: User,
+        reply: Reply,
+        removeMarkupKeyboard: Boolean = true
+    ): SendMessage {
+        val sendMessage = SendMessageBuilder()
+            .chat(user.chat)
+            .reply(reply)
+            .build()
+        if (removeMarkupKeyboard) {
+            sendMessage.replyMarkup = ReplyKeyboardRemove().apply {
+                removeKeyboard = true
+            }
+        }
+        return sendMessage
+    }
+
+    protected fun sendSimpleReply(
+        user: User,
+        reply: Reply,
+        markup: Iterable<String>
+    ): SendMessage {
         return SendMessageBuilder()
             .chat(user.chat)
             .reply(reply)
+            .replyMarkup(markup)
             .build()
     }
 
