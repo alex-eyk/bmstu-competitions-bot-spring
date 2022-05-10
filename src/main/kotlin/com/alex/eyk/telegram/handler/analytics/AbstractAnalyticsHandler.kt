@@ -7,6 +7,8 @@ import com.alex.eyk.replies.dictionary.provider.DictionaryProvider
 import com.alex.eyk.telegram.model.entity.competition.Competition
 import com.alex.eyk.telegram.model.entity.competition.Direction
 import com.alex.eyk.telegram.model.entity.competition.EducationBasis
+import com.alex.eyk.telegram.model.entity.recent.RecentDirection
+import com.alex.eyk.telegram.model.entity.recent.RecentDirectionRepository
 import com.alex.eyk.telegram.model.entity.user.Activity
 import com.alex.eyk.telegram.model.entity.user.User
 import com.alex.eyk.telegram.model.entity.user.UserRepository
@@ -25,6 +27,7 @@ import java.util.Calendar
 abstract class AbstractAnalyticsHandler(
     private val dictProvider: DictionaryProvider,
     private val userRepository: UserRepository,
+    private val recentDirectionRepository: RecentDirectionRepository,
     private val analiticsService: AnaliticsService,
     private val competitionsHolder: CompetitionsHolder,
     private val educationBasis: EducationBasis,
