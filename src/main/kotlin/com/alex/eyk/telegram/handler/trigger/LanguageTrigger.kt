@@ -35,7 +35,7 @@ class LanguageTrigger @Autowired constructor(
             .key(Replies.SELECT_LANG)
             .args(*langArgs)
             .get()
-        return super.sendSimpleReply(user, langReply)
+        return sendSimpleReply(user, langReply)
     }
 
     private fun getSupportedLangsText(): String {

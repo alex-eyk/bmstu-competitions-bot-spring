@@ -29,6 +29,6 @@ class EditRegTrigger @Autowired constructor(
             .language(user.languageCode)
             .key(Replies.EDIT_REG_NUM)
             .get()
-        return super.sendSimpleReply(user, reply)
+        return sendSimpleReply(user, reply)
     }
 }
