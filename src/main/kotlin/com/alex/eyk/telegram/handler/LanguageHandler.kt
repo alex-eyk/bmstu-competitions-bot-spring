@@ -36,7 +36,7 @@ class LanguageHandler @Autowired constructor(
             .language(user.languageCode)
             .key(replyKey)
             .get()
-        return super.sendSimpleReply(user, reply)
+        return sendSimpleReply(user, reply)
     }
 
     private fun updateUser(

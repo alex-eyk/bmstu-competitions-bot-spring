@@ -45,7 +45,7 @@ class RegistrationHandler @Autowired constructor(
             .key(responseTextKey)
             .language(user.languageCode)
             .get()
-        return super.sendSimpleReply(user, reply)
+        return sendSimpleReply(user, reply)
     }
 
     private fun removeDividers(regNumber: String): String {

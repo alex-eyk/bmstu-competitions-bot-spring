@@ -74,7 +74,7 @@ abstract class AbstractAnalyticsHandler(
                 .language(user.languageCode)
                 .key(Replies.PARTICIPANT_NOT_FOUND)
                 .get()
-            return super.sendSimpleReply(user, reply)
+            return sendSimpleReply(user, reply)
         }
     }
 
