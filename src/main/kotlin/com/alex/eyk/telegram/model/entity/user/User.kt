@@ -1,8 +1,9 @@
 package com.alex.eyk.telegram.model.entity.user
 
-import com.alex.eyk.telegram.model.entity.competition.RecentDirection
+import com.alex.eyk.telegram.model.entity.recent.RecentDirection
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.FetchType
 import javax.persistence.Id
 import javax.persistence.OneToMany
 import javax.persistence.Table
@@ -27,8 +28,8 @@ data class User(
     @Column(name = "`activity`", nullable = false)
     var activity: Activity = Activity.NONE,
 
-    @OneToMany
-    var recentDirections: List<RecentDirection> = emptyList()
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    var recentDirections: Set<RecentDirection> = emptySet()
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
