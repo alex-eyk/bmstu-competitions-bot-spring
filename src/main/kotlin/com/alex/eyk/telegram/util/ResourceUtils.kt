@@ -9,7 +9,7 @@ object ResourceUtils {
         val dictionariesPath = JarUtils.getFileFromJarDirectoryPath(directoryPath, javaClass)
         val file = File(dictionariesPath)
         val innerFiles = file.listFiles()
-            ?: throw IllegalStateException("Directory: $directoryPath not contains files")
+            ?: throw IllegalStateException("Directory: $dictionariesPath not contains files")
         return innerFiles.toHashSet()
     }
 }
