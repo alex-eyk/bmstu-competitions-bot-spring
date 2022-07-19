@@ -4,3 +4,5 @@ sed -i.bak "s|dictionary.directory_path=.*|dictionary.directory_path=$PWD\/src\/
 echo "Xml-replies configuration updated"
 
 ./gradlew bootJar
+
+cp -r src/main/resources/dictionary build/libs
