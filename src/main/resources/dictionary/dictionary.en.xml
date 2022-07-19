@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dictionary
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="dictionary-schema.xsd"
+        language_local_name="English"
+        default="false">
+
+    <replies>
+        <reply key="start" markdown="true">*We are glad to welcome you again!!*<br/>You have already entered your registration number before. If you want to change it, use the /edit command.<br/>Check your position with the /paid and /budget commands.</reply>
+        <reply key="start_first_time" markdown="true">*Welcome!*<br/>First, enter your registration number. Most often this is the number of your Russian insurance policy. Enter it in this format: 000-000-000 00.<br/>If for some reason you do not have it, enter your personal number received during registration.</reply>
+
+        <reply key="select_lang" format="true" markdown="true">Select a language from the supported ones.<br/>These include:<br/>*<arg q="%s" name="supported_langs"/>*<br/>In response, write the code of the language you need</reply>
+        <reply key="lang_selected">Language changed successfully</reply>
+        <reply key="lang_not_found">Language not found. Please, try again</reply>
+
+        <reply key="register_complete" markdown="true">*Congratulations on your registration!*<br/>If you later need to change your registration data, use the /edit command.<br/>Check your position with the /paid and /budget commands.</reply>
+        <reply key="register_wrong_num">Invalid registration number entered. Please try again.</reply>
+        <reply key="edit_reg_num">Enter a new registration number. Most often this is the number of your Russian insurance policy. Enter it in the format 000-000-000 00.<br/>If for some reason you do not have it, enter your personal number received during registration.</reply>
+
+        <reply key="input_direction_code">Enter the direction code in the format `00.00.00`</reply>
+        <reply key="analyze_result" format="true" markdown="true">*<arg q="%s" name="consent_given"/>*Your position: *<arg q="%d" name="position"/>*<br/>Total places: *<arg q="%d" name="total"/>*<br/>Consents: *<arg q="%d" name="consents"/> (<arg q="%.1f" name="consents_percentage"/>%%)*<br/>Consent to other destinations: *<arg q="%d" name="another_consents"/>*<br/>Lists updated _<arg q="%s" name="created_weekday"/>, <arg q="%s" name="created_time"/>_</reply>
+        <reply key="direction_not_found">Direction not found. Check the entered data and try again.</reply>
+        <reply key="wrong_direction_code">You have entered the wrong specialty code. The code must be entered in the format `00.00.00`.<br/>It is important that the first zero must also be specified (note: 01 instead of 0)</reply>
+        <reply key="participant_not_found">We couldn't find your registration details in the list. Please try again and check that the data and direction are correct.</reply>
+    </replies>
+
+    <words>
+        <word key="consent_given">You have consented to this direction</word>
+        <word key="dow_sunday">on Sunday</word>
+        <word key="dow_monday">on Monday</word>
+        <word key="dow_tuesday">on Tuesday</word>
+        <word key="dow_wednesday">on Wednesday</word>
+        <word key="dow_thursday">on Thursday</word>
+        <word key="dow_friday">on Friday</word>
+        <word key="dow_saturday">on Saturday</word>
+    </words>
+</dictionary>

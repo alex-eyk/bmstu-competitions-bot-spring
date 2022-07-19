@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dictionary
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="dictionary-schema.xsd"
+        language_local_name="Русский"
+        default="true">
+
+    <replies>
+        <reply key="start" markdown="true">*Рады приветствовать Вас снова!*<br/>Ранее Вы уже вводили ваш регистрационный номер. Если вы хотите изменить его, воспользуйтесь командой /edit.<br/>Проверьте ваше место при помощи команд /paid (платная основа) и /budget (бюджетная основа).</reply>
+        <reply key="start_first_time" markdown="true">*Добро пожаловать!*<br/>Для начала введите ваш регистрационный номер. Чаще всего это номер Вашего СНИЛС. Вводите его в формате 000-000-000 00.<br/>Если по какой-либо причине у вас его нет, введите свой личный номер, полученный при регистрации.</reply>
+
+        <reply key="select_lang" format="true" markdown="true">Выберите язык среди поддерживаемых.<br/>На данный момент к ним относятся:<br/>*<arg q="%s" name="supported_langs"/>*<br/>В ответ напишите код необходимо вам языка.<br/>_In response, write the code of the language you need_</reply>
+        <reply key="lang_selected">Язык успешно изменен.</reply>
+        <reply key="lang_not_found">Язык не найден. Попробуйте повторить попытку.</reply>
+
+        <reply key="register_complete" markdown="true">*Поздравляем с регистрацией!*<br/>Если в дальнейшем Вам будет необходимо изменить регистрационные данные, воспользуйтесь командой /edit.<br/>Проверьте ваше место при помощи команд /paid (платная основа) и /budget (бюджетная основа).</reply>
+        <reply key="register_wrong_num">Введен неверный регистрационный номер. Пожалуйства, повторите попытку.</reply>
+        <reply key="edit_reg_num">Введите новый регистрационный номер. Чаще всего это номер Вашего СНИЛС. Вводите его в формате 000-000-000 00.<br/>Если по какой-либо причине у вас его нет, введите свой личный номер, полученный при регистрации.</reply>
+
+        <reply key="input_direction_code">Введите код направления в формате `00.00.00`</reply>
+        <reply key="analyze_result" format="true" markdown="true">*<arg q="%s" name="consent_given"/>*Ваше место: *<arg q="%d" name="position"/>*<br/>Всего мест: *<arg q="%d" name="total"/>*<br/>Согласий: *<arg q="%d" name="consents"/> (<arg q="%.1f" name="consents_percentage"/>%%)*<br/>Согласий на другие направления: *<arg q="%d" name="another_consents"/>*<br/>Списки обновлены _<arg q="%s" name="created_weekday"/>, <arg q="%s" name="created_time"/>_</reply>
+        <reply key="direction_not_found">Направление не найдено. Проверьте введенные данные и повторите попытку.</reply>
+        <reply key="wrong_direction_code">Вы ввели неверный код специальности. Код должен быть введен в формате `00.00.00`.<br/>Важно, что первый ноль также должен быть указан (прим.: 01 вместо 0)</reply>
+        <reply key="participant_not_found">Не удалось найти ваши регистрационные данные в списке. Попробуйте повторить попытку и проверьте, что данные и направление указаны верно.</reply>
+    </replies>
+
+    <words>
+        <word key="consent_given">Вы подали согласие на это направление</word>
+        <word key="dow_sunday">в воскресенье</word>
+        <word key="dow_monday">в понедельник</word>
+        <word key="dow_tuesday">во вторник</word>
+        <word key="dow_wednesday">в среду</word>
+        <word key="dow_thursday">в четверг</word>
+        <word key="dow_friday">в пятницу</word>
+        <word key="dow_saturday">в субботу</word>
+    </words>
+</dictionary>
