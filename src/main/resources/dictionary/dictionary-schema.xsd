@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="dictionary" type="xs:group">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="replies" type="xs:group">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="reply" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:complexContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:sequence>
+                                                <xs:element name="arg">
+                                                    <xs:complexType>
+                                                        <xs:attribute name="q" type="xs:string" use="required"/>
+                                                        <xs:attribute name="name" type="xs:string" use="required"/>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element name="br"/>
+                                            </xs:sequence>
+                                            <xs:attribute name="key" type="xs:string" use="required"/>
+                                            <xs:attribute name="format" type="xs:boolean" default="false"/>
+                                            <xs:attribute name="markdown" type="xs:boolean" default="false"/>
+                                        </xs:extension>
+                                    </xs:complexContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="words">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="word" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute name="key" type="xs:string" use="required"/>
+                                            <xs:attribute name="translatable" type="xs:boolean" default="true"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="language_local_name" type="xs:string" use="required"/>
+            <xs:attribute name="default" type="xs:boolean" use="required"/>
+            <xs:attribute name="use_cases" type="xs:boolean" default="false"/>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
