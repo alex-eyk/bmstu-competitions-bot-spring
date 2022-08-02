@@ -29,6 +29,7 @@ abstract class AbstractHandler {
         throw NotImplementedError()
     }
 
+    @Deprecated("Use SendMessageUtils instead")
     protected fun sendSimpleReply(
         user: User,
         reply: Reply,
@@ -46,6 +47,8 @@ abstract class AbstractHandler {
         return sendMessage
     }
 
+    @Suppress("DeprecatedCallableAddReplaceWith")
+    @Deprecated("Use SendMessageUtils instead")
     protected fun sendSimpleReply(
         user: User,
         reply: Reply,
