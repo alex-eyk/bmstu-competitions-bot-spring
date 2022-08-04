@@ -38,6 +38,10 @@ data class User(
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     var recentDirections: Set<RecentDirection> = emptySet()
 ) {
+
+    inline val disabled: Boolean
+        get() = !enabled
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
