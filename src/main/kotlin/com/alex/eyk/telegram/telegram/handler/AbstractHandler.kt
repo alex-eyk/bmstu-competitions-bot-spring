@@ -42,7 +42,13 @@ abstract class AbstractHandler(
         return permissionDeniedStrategy.onPermissionDenied(user)
     }
 
-    @Deprecated("Use SendMessageUtils instead")
+    @Deprecated(
+        "Use SendMessageUtils instead",
+        ReplaceWith(
+            "SendMessageUtils.simpleSendMessage(user, reply, removeMarkupKeyboard)",
+            "com.alex.eyk.telegram.util.SendMessageUtils"
+        )
+    )
     protected fun sendSimpleReply(
         user: User,
         reply: Reply,
@@ -60,8 +66,13 @@ abstract class AbstractHandler(
         return sendMessage
     }
 
-    @Suppress("DeprecatedCallableAddReplaceWith")
-    @Deprecated("Use SendMessageUtils instead")
+    @Deprecated(
+        "Use SendMessageUtils instead",
+        ReplaceWith(
+            "SendMessageUtils.simpleSendMessage(user, reply, markup)",
+            "com.alex.eyk.telegram.util.SendMessageUtils"
+        )
+    )
     protected fun sendSimpleReply(
         user: User,
         reply: Reply,
