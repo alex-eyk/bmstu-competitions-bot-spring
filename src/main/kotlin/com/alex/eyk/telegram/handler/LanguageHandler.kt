@@ -6,6 +6,7 @@ import com.alex.eyk.telegram.model.entity.user.Activity
 import com.alex.eyk.telegram.model.entity.user.User
 import com.alex.eyk.telegram.model.entity.user.UserRepository
 import com.alex.eyk.telegram.telegram.handler.message.activity.ActivityMessageHandler
+import com.alex.eyk.telegram.util.SendMessageUtils
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage
@@ -36,7 +37,7 @@ class LanguageHandler @Autowired constructor(
             .language(user.languageCode)
             .key(replyKey)
             .get()
-        return sendSimpleReply(user, reply)
+        return SendMessageUtils.simpleSendMessage(user, reply)
     }
 
     private fun updateUser(
