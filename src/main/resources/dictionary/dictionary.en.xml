@@ -13,6 +13,8 @@
         <reply key="lang_selected">Language changed successfully</reply>
         <reply key="lang_not_found">Language not found. Please, try again</reply>
 
+        <reply key="permission_denied" markdown="true">*Unable to use this command*<br/>Permissions denied</reply>
+
         <reply key="register_complete" markdown="true">*Congratulations on your registration!*<br/>If you later need to change your registration data, use the /edit command.<br/>Check your position with the /paid and /budget commands.</reply>
         <reply key="register_wrong_num">Invalid registration number entered. Please try again.</reply>
         <reply key="edit_reg_num">Enter a new registration number. Most often this is the number of your Russian insurance policy. Enter it in the format 000-000-000 00.<br/>If for some reason you do not have it, enter your personal number received during registration.</reply>

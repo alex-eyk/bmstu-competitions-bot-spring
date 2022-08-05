@@ -6,6 +6,7 @@ import com.alex.eyk.telegram.model.entity.user.Activity
 import com.alex.eyk.telegram.model.entity.user.User
 import com.alex.eyk.telegram.model.entity.user.UserRepository
 import com.alex.eyk.telegram.telegram.handler.command.CommandHandler
+import com.alex.eyk.telegram.util.SendMessageUtils
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage
@@ -29,7 +30,7 @@ class StartHandler @Autowired constructor(
             .language(user.languageCode)
             .key(Replies.START)
             .get()
-        return sendSimpleReply(user, greetingReply)
+        return SendMessageUtils.simpleSendMessage(user, greetingReply)
     }
 
     override fun notRegisteredHandle(
@@ -46,7 +47,7 @@ class StartHandler @Autowired constructor(
             .language(getLanguageByMessage(message))
             .key(Replies.START_FIRST_TIME)
             .get()
-        return sendSimpleReply(user, firstGreetingReply)
+        return SendMessageUtils.simpleSendMessage(user, firstGreetingReply)
     }
 
     private fun getLanguageByMessage(

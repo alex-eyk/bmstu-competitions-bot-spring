@@ -20,6 +20,7 @@ import com.alex.eyk.telegram.service.analyze.exception.ParticipantNotFoundExcept
 import com.alex.eyk.telegram.service.holder.CompetitionsHolder
 import com.alex.eyk.telegram.telegram.handler.message.activity.ActivityMessageHandler
 import com.alex.eyk.telegram.util.RecentDirectionUtils
+import com.alex.eyk.telegram.util.SendMessageUtils
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage
 import org.telegram.telegrambots.meta.api.objects.Message
 import java.io.FileNotFoundException
@@ -53,7 +54,7 @@ abstract class AbstractAnalyticsHandler(
                 .language(user.languageCode)
                 .key(Replies.WRONG_DIRECTION_CODE)
                 .get()
-            return sendSimpleReply(user, reply)
+            return SendMessageUtils.simpleSendMessage(user, reply)
         }
         val direction = Direction(
             code = message.text,
@@ -74,19 +75,19 @@ abstract class AbstractAnalyticsHandler(
                 .get()
             user.activity = Activity.NONE
             userRepository.save(user)
-            return sendSimpleReply(user, reply)
+            return SendMessageUtils.simpleSendMessage(user, reply)
         } catch (e: FileNotFoundException) {
             val reply = dictProvider.reply()
                 .language(user.languageCode)
-                //.key()
+                // .key()
                 .get()
-            return sendSimpleReply(user, reply)
+            return SendMessageUtils.simpleSendMessage(user, reply)
         } catch (e: ParticipantNotFoundException) {
             val reply = dictProvider.reply()
                 .language(user.languageCode)
                 .key(Replies.PARTICIPANT_NOT_FOUND)
                 .get()
-            return sendSimpleReply(user, reply)
+            return SendMessageUtils.simpleSendMessage(user, reply)
         }
     }
 

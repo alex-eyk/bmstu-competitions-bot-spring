@@ -3,6 +3,8 @@ package com.alex.eyk.telegram.model.entity.user
 import com.alex.eyk.telegram.model.entity.recent.RecentDirection
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
 import javax.persistence.FetchType
 import javax.persistence.Id
 import javax.persistence.OneToMany
@@ -19,6 +21,10 @@ data class User(
     @Column(name = "`lang`", nullable = false)
     var languageCode: String,
 
+    @Column(name = "`role`", nullable = false)
+    @Enumerated(EnumType.ORDINAL)
+    var role: Role = Role.USER,
+
     @Column(name = "`reg_number`", nullable = false)
     var registrationNumber: String = "00000000000",
 
@@ -26,11 +32,16 @@ data class User(
     var enabled: Boolean = true,
 
     @Column(name = "`activity`", nullable = false)
+    @Enumerated(EnumType.ORDINAL)
     var activity: Activity = Activity.NONE,
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     var recentDirections: Set<RecentDirection> = emptySet()
 ) {
+
+    inline val disabled: Boolean
+        get() = !enabled
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
