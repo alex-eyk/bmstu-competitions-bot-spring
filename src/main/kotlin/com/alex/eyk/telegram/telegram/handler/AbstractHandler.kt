@@ -1,23 +1,32 @@
 package com.alex.eyk.telegram.telegram.handler
 
 import com.alex.eyk.replies.dictionary.Reply
+import com.alex.eyk.telegram.model.entity.user.Role
 import com.alex.eyk.telegram.model.entity.user.User
+import com.alex.eyk.telegram.telegram.handler.perm.IgnoreStrategy
+import com.alex.eyk.telegram.telegram.handler.perm.PermissionDeniedStrategy
 import com.alex.eyk.telegram.telegram.method.SendMessageBuilder
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage
 import org.telegram.telegrambots.meta.api.objects.Message
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardRemove
 
-abstract class AbstractHandler {
+abstract class AbstractHandler(
+    protected val requiredRole: Role = Role.USER,
+    private val permissionDeniedStrategy: PermissionDeniedStrategy = IgnoreStrategy()
+) {
 
     fun handle(user: User?, message: Message): BotApiMethod<*> {
         if (user == null) {
             return notRegisteredHandle(message)
         }
-        if (user.enabled) {
-            return safeHandle(user, message)
-        } else {
+        if (user.disabled) {
             throw IllegalStateException("User: ${user.chat} was disabled")
+        }
+        return if (requiredRole.include(user.role)) {
+            safeHandle(user, message)
+        } else {
+            permissionDeniedHandle(user)
         }
     }
 
@@ -27,6 +36,10 @@ abstract class AbstractHandler {
 
     protected open fun notRegisteredHandle(message: Message): BotApiMethod<*> {
         throw NotImplementedError()
+    }
+
+    protected open fun permissionDeniedHandle(user: User): BotApiMethod<*> {
+        return permissionDeniedStrategy.onPermissionDenied(user)
     }
 
     @Deprecated("Use SendMessageUtils instead")
