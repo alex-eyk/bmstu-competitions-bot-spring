@@ -4,22 +4,23 @@ import com.alex.eyk.dictionary.builder.AnalyzeResultArgumentsBuilder
 import com.alex.eyk.dictionary.keys.Replies
 import com.alex.eyk.dictionary.keys.Words
 import com.alex.eyk.replies.dictionary.provider.DictionaryProvider
-import com.alex.eyk.telegram.model.entity.competition.Competition
-import com.alex.eyk.telegram.model.entity.competition.Direction
-import com.alex.eyk.telegram.model.entity.competition.EducationBasis
-import com.alex.eyk.telegram.model.entity.recent.RecentDirection
-import com.alex.eyk.telegram.model.entity.recent.RecentDirectionRepository
-import com.alex.eyk.telegram.model.entity.user.Activity
-import com.alex.eyk.telegram.model.entity.user.User
-import com.alex.eyk.telegram.model.entity.user.UserRepository
-import com.alex.eyk.telegram.model.validation.Result
-import com.alex.eyk.telegram.model.validation.impl.DirectionCodeValidator
+import com.alex.eyk.telegram.data.entity.competition.Competition
+import com.alex.eyk.telegram.data.entity.competition.Direction
+import com.alex.eyk.telegram.data.entity.competition.EducationBasis
+import com.alex.eyk.telegram.data.entity.recent.RecentDirection
+import com.alex.eyk.telegram.data.entity.recent.RecentDirectionRepository
+import com.alex.eyk.telegram.data.entity.user.Activity
+import com.alex.eyk.telegram.data.entity.user.User
+import com.alex.eyk.telegram.data.entity.user.UserRepository
+import com.alex.eyk.telegram.data.validation.Result
+import com.alex.eyk.telegram.data.validation.impl.DirectionCodeValidator
 import com.alex.eyk.telegram.service.analyze.AnaliticsService
 import com.alex.eyk.telegram.service.analyze.CompetitionAnalytics
 import com.alex.eyk.telegram.service.analyze.exception.ParticipantNotFoundException
 import com.alex.eyk.telegram.service.holder.CompetitionsHolder
 import com.alex.eyk.telegram.telegram.handler.message.activity.ActivityMessageHandler
 import com.alex.eyk.telegram.util.RecentDirectionUtils
+import com.alex.eyk.telegram.util.SendMessageUtils
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage
 import org.telegram.telegrambots.meta.api.objects.Message
 import java.io.FileNotFoundException
@@ -53,7 +54,7 @@ abstract class AbstractAnalyticsHandler(
                 .language(user.languageCode)
                 .key(Replies.WRONG_DIRECTION_CODE)
                 .get()
-            return sendSimpleReply(user, reply)
+            return SendMessageUtils.simpleSendMessage(user, reply)
         }
         val direction = Direction(
             code = message.text,
@@ -74,19 +75,19 @@ abstract class AbstractAnalyticsHandler(
                 .get()
             user.activity = Activity.NONE
             userRepository.save(user)
-            return sendSimpleReply(user, reply)
+            return SendMessageUtils.simpleSendMessage(user, reply)
         } catch (e: FileNotFoundException) {
             val reply = dictProvider.reply()
                 .language(user.languageCode)
-                //.key()
+                // .key()
                 .get()
-            return sendSimpleReply(user, reply)
+            return SendMessageUtils.simpleSendMessage(user, reply)
         } catch (e: ParticipantNotFoundException) {
             val reply = dictProvider.reply()
                 .language(user.languageCode)
                 .key(Replies.PARTICIPANT_NOT_FOUND)
                 .get()
-            return sendSimpleReply(user, reply)
+            return SendMessageUtils.simpleSendMessage(user, reply)
         }
     }
 

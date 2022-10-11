@@ -1,4 +1,4 @@
-package com.alex.eyk.telegram.model.entity.competition
+package com.alex.eyk.telegram.data.entity.competition
 
 data class Participant(
     val position: Int,

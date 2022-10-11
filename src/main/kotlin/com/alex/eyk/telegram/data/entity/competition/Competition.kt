@@ -1,4 +1,4 @@
-package com.alex.eyk.telegram.model.entity.competition
+package com.alex.eyk.telegram.data.entity.competition
 
 import com.alex.eyk.telegram.collection.SkipList
 import java.util.Date

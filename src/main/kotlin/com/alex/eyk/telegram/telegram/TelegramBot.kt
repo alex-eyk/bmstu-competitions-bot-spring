@@ -1,8 +1,9 @@
 package com.alex.eyk.telegram.telegram
 
 import com.alex.eyk.telegram.config.ServerProperties
-import com.alex.eyk.telegram.model.entity.user.UserRepository
+import com.alex.eyk.telegram.data.entity.user.UserRepository
 import com.alex.eyk.telegram.telegram.handler.HandlerProvider
+import com.alex.eyk.telegram.telegram.method.AbsentApiMethod
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -60,6 +61,9 @@ class TelegramBot @Autowired constructor(
         method: BotApiMethod<T>,
         onError: (BotApiMethod<*>, Throwable) -> Unit
     ) {
+        if (method is AbsentApiMethod) {
+            return
+        }
         super.executeAsync(
             method,
             object : SentCallback<T> {

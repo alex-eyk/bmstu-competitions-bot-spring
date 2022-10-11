@@ -1,4 +1,4 @@
-package com.alex.eyk.telegram.model.validation
+package com.alex.eyk.telegram.data.validation
 
 sealed interface Result {
     object Sucess : Result

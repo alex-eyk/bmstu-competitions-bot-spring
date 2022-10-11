@@ -1,8 +1,8 @@
 package com.alex.eyk.telegram.service.analyze
 
 import com.alex.eyk.telegram.ext.notContains
-import com.alex.eyk.telegram.model.entity.competition.Competition
-import com.alex.eyk.telegram.model.entity.competition.Participant
+import com.alex.eyk.telegram.data.entity.competition.Competition
+import com.alex.eyk.telegram.data.entity.competition.Participant
 import com.alex.eyk.telegram.service.analyze.exception.ParticipantNotFoundException
 import org.springframework.stereotype.Service
 

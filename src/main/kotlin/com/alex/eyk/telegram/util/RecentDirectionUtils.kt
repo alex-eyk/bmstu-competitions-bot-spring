@@ -1,6 +1,6 @@
 package com.alex.eyk.telegram.util
 
-import com.alex.eyk.telegram.model.entity.recent.RecentDirection
+import com.alex.eyk.telegram.data.entity.recent.RecentDirection
 
 object RecentDirectionUtils {
 
@@ -27,9 +27,7 @@ object RecentDirectionUtils {
         return recentDirectionStrings
     }
 
-    fun convertBitsToString(
-        direction: Int
-    ): String {
+    fun convertBitsToString(direction: Int): String {
         return DIRECTION_FORMAT.format(
             (direction and FIRST_PART_MASK) shr FIRST_PART_OFFSET,
             (direction and SECOND_PART_MASK) shr SECOND_PART_OFFSET,
@@ -40,7 +38,7 @@ object RecentDirectionUtils {
     fun convertStringToBits(direction: String): Int {
         val parts = direction.split(".")
         return (parts[0].toInt() shl FIRST_PART_OFFSET) +
-                (parts[1].toInt() shl SECOND_PART_OFFSET) +
-                (parts[2].toInt())
+            (parts[1].toInt() shl SECOND_PART_OFFSET) +
+            (parts[2].toInt())
     }
 }

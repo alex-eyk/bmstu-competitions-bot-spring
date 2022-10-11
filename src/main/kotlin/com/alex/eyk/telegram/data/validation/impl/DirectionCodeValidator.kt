@@ -1,4 +1,4 @@
-package com.alex.eyk.telegram.model.validation.impl
+package com.alex.eyk.telegram.data.validation.impl
 
 class DirectionCodeValidator : AbstractRegexValidator(DIRECTION_REGEX) {
 

@@ -4,9 +4,10 @@ import com.alex.eyk.dictionary.builder.SelectLangArgumentsBuilder
 import com.alex.eyk.dictionary.keys.Replies
 import com.alex.eyk.replies.dictionary.provider.DictionaryProvider
 import com.alex.eyk.replies.util.removeLastChars
-import com.alex.eyk.telegram.model.entity.user.Activity
-import com.alex.eyk.telegram.model.entity.user.User
-import com.alex.eyk.telegram.model.entity.user.UserRepository
+import com.alex.eyk.telegram.data.entity.user.Activity
+import com.alex.eyk.telegram.data.entity.user.User
+import com.alex.eyk.telegram.data.entity.user.UserRepository
+import com.alex.eyk.telegram.util.SendMessageUtils
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage
@@ -35,7 +36,7 @@ class LanguageTrigger @Autowired constructor(
             .key(Replies.SELECT_LANG)
             .args(*langArgs)
             .get()
-        return sendSimpleReply(user, langReply)
+        return SendMessageUtils.simpleSendMessage(user, langReply)
     }
 
     private fun getSupportedLangsText(): String {

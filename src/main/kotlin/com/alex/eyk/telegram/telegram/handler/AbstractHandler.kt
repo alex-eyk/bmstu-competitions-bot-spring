@@ -1,23 +1,28 @@
 package com.alex.eyk.telegram.telegram.handler
 
-import com.alex.eyk.replies.dictionary.Reply
-import com.alex.eyk.telegram.model.entity.user.User
-import com.alex.eyk.telegram.telegram.method.SendMessageBuilder
+import com.alex.eyk.telegram.data.entity.user.Role
+import com.alex.eyk.telegram.data.entity.user.User
+import com.alex.eyk.telegram.telegram.handler.perm.IgnoreStrategy
+import com.alex.eyk.telegram.telegram.handler.perm.PermissionDeniedStrategy
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage
 import org.telegram.telegrambots.meta.api.objects.Message
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardRemove
 
-abstract class AbstractHandler {
+abstract class AbstractHandler(
+    protected val requiredRole: Role = Role.USER,
+    private val permissionDeniedStrategy: PermissionDeniedStrategy = IgnoreStrategy()
+) {
 
     fun handle(user: User?, message: Message): BotApiMethod<*> {
         if (user == null) {
             return notRegisteredHandle(message)
         }
-        if (user.enabled) {
-            return safeHandle(user, message)
-        } else {
+        if (user.disabled) {
             throw IllegalStateException("User: ${user.chat} was disabled")
+        }
+        return if (requiredRole.include(user.role)) {
+            safeHandle(user, message)
+        } else {
+            permissionDeniedHandle(user)
         }
     }
 
@@ -29,33 +34,8 @@ abstract class AbstractHandler {
         throw NotImplementedError()
     }
 
-    protected fun sendSimpleReply(
-        user: User,
-        reply: Reply,
-        removeMarkupKeyboard: Boolean = true
-    ): SendMessage {
-        val sendMessage = SendMessageBuilder()
-            .chat(user.chat)
-            .reply(reply)
-            .build()
-        if (removeMarkupKeyboard) {
-            sendMessage.replyMarkup = ReplyKeyboardRemove().apply {
-                removeKeyboard = true
-            }
-        }
-        return sendMessage
-    }
-
-    protected fun sendSimpleReply(
-        user: User,
-        reply: Reply,
-        markup: Iterable<String>
-    ): SendMessage {
-        return SendMessageBuilder()
-            .chat(user.chat)
-            .reply(reply)
-            .replyMarkup(markup)
-            .build()
+    protected open fun permissionDeniedHandle(user: User): BotApiMethod<*> {
+        return permissionDeniedStrategy.onPermissionDenied(user)
     }
 
     fun buildTask(): TaskBuilder {

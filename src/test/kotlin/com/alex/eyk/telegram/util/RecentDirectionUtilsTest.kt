@@ -1,7 +1,8 @@
 package com.alex.eyk.telegram.util
 
-import com.alex.eyk.telegram.model.entity.recent.RecentDirection
-import com.alex.eyk.telegram.model.entity.user.User
+import com.alex.eyk.telegram.data.entity.recent.RecentDirection
+import com.alex.eyk.telegram.data.entity.user.Role
+import com.alex.eyk.telegram.data.entity.user.User
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
@@ -9,7 +10,7 @@ internal class RecentDirectionUtilsTest {
 
     @Test
     fun toStringListTest() {
-        val user = User(0, "", "")
+        val user = User(0, "", Role.USER, "")
         val testData = setOf(
             RecentDirection(0, user, (38 shl 9) + (3 shl 4) + 5),
             RecentDirection(1, user, (9 shl 9) + (3 shl 4) + 3),
@@ -40,5 +41,4 @@ internal class RecentDirectionUtilsTest {
         println("38.03.05".split(".")[1].toInt() shl 4)
         Assertions.assertEquals((38 shl 9) + (3 shl 4) + 5, result)
     }
-
 }

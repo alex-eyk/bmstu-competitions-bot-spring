@@ -1,7 +1,7 @@
 package com.alex.eyk.telegram.service.loader
 
-import com.alex.eyk.telegram.model.entity.competition.Competition
-import com.alex.eyk.telegram.model.entity.competition.Direction
+import com.alex.eyk.telegram.data.entity.competition.Competition
+import com.alex.eyk.telegram.data.entity.competition.Direction
 import java.util.Date
 
 interface CompetitionsLoader {

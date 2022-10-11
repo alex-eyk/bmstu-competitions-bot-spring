@@ -1,6 +1,6 @@
 package com.alex.eyk.telegram.telegram.handler.message.activity
 
-import com.alex.eyk.telegram.model.entity.user.Activity
+import com.alex.eyk.telegram.data.entity.user.Activity
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
