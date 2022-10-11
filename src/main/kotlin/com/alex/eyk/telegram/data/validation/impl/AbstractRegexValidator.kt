@@ -1,7 +1,7 @@
-package com.alex.eyk.telegram.model.validation.impl
+package com.alex.eyk.telegram.data.validation.impl
 
-import com.alex.eyk.telegram.model.validation.Result
-import com.alex.eyk.telegram.model.validation.Validator
+import com.alex.eyk.telegram.data.validation.Result
+import com.alex.eyk.telegram.data.validation.Validator
 
 abstract class AbstractRegexValidator(
     private val regex: Regex

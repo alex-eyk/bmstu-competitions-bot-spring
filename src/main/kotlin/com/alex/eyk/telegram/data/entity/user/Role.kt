@@ -1,4 +1,4 @@
-package com.alex.eyk.telegram.model.entity.user
+package com.alex.eyk.telegram.data.entity.user
 
 enum class Role(val level: Int) {
     USER(1);

@@ -2,11 +2,11 @@ package com.alex.eyk.telegram.handler
 
 import com.alex.eyk.dictionary.keys.Replies
 import com.alex.eyk.replies.dictionary.provider.DictionaryProvider
-import com.alex.eyk.telegram.model.entity.user.Activity
-import com.alex.eyk.telegram.model.entity.user.User
-import com.alex.eyk.telegram.model.entity.user.UserRepository
-import com.alex.eyk.telegram.model.validation.Result
-import com.alex.eyk.telegram.model.validation.impl.RegNumberValidatior
+import com.alex.eyk.telegram.data.entity.user.Activity
+import com.alex.eyk.telegram.data.entity.user.User
+import com.alex.eyk.telegram.data.entity.user.UserRepository
+import com.alex.eyk.telegram.data.validation.Result
+import com.alex.eyk.telegram.data.validation.impl.RegNumberValidatior
 import com.alex.eyk.telegram.telegram.handler.message.activity.ActivityMessageHandler
 import com.alex.eyk.telegram.util.SendMessageUtils
 import org.springframework.beans.factory.annotation.Autowired

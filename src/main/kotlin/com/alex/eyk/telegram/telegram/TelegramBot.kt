@@ -1,7 +1,7 @@
 package com.alex.eyk.telegram.telegram
 
 import com.alex.eyk.telegram.config.ServerProperties
-import com.alex.eyk.telegram.model.entity.user.UserRepository
+import com.alex.eyk.telegram.data.entity.user.UserRepository
 import com.alex.eyk.telegram.telegram.handler.HandlerProvider
 import com.alex.eyk.telegram.telegram.method.AbsentApiMethod
 import org.slf4j.LoggerFactory

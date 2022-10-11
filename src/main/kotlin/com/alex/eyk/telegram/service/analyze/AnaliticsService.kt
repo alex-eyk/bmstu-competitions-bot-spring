@@ -1,6 +1,6 @@
 package com.alex.eyk.telegram.service.analyze
 
-import com.alex.eyk.telegram.model.entity.competition.Competition
+import com.alex.eyk.telegram.data.entity.competition.Competition
 
 interface AnaliticsService {
 

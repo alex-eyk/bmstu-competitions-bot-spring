@@ -1,6 +1,6 @@
-package com.alex.eyk.telegram.model.entity.recent
+package com.alex.eyk.telegram.data.entity.recent
 
-import com.alex.eyk.telegram.model.entity.user.User
+import com.alex.eyk.telegram.data.entity.user.User
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Id

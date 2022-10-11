@@ -1,6 +1,6 @@
 package com.alex.eyk.telegram.util
 
-import com.alex.eyk.telegram.model.entity.recent.RecentDirection
+import com.alex.eyk.telegram.data.entity.recent.RecentDirection
 
 object RecentDirectionUtils {
 

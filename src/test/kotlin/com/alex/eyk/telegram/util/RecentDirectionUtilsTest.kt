@@ -1,8 +1,8 @@
 package com.alex.eyk.telegram.util
 
-import com.alex.eyk.telegram.model.entity.recent.RecentDirection
-import com.alex.eyk.telegram.model.entity.user.Role
-import com.alex.eyk.telegram.model.entity.user.User
+import com.alex.eyk.telegram.data.entity.recent.RecentDirection
+import com.alex.eyk.telegram.data.entity.user.Role
+import com.alex.eyk.telegram.data.entity.user.User
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 

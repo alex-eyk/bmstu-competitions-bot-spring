@@ -1,4 +1,4 @@
-package com.alex.eyk.telegram.model.validation
+package com.alex.eyk.telegram.data.validation
 
 interface Validator<T> {
 

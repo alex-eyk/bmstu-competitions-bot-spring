@@ -1,6 +1,6 @@
-package com.alex.eyk.telegram.model.entity.user
+package com.alex.eyk.telegram.data.entity.user
 
-import com.alex.eyk.telegram.model.entity.recent.RecentDirection
+import com.alex.eyk.telegram.data.entity.recent.RecentDirection
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.EnumType
